@@ -1,7 +1,7 @@
-# Thomas Greg
+# Seventh
 Teste prático de desenvolvimento
 
-Demonstração de cliente MVC suportado por API RestFul com armazenamento em banco de dados relacional Microsoft MS-SQL.
+Demonstração servidor para video monitoramento API RestFul com armazenamento de dados em banco de dados relacional Microsoft MS-SQL e de vídeos em sistema de arquivos.
 
 ## Instalação
 
@@ -22,27 +22,19 @@ http://localhost:4200/
 
 ## Lista de pendências
 
-▪ Criação de stored procedures para ações de inclusão, alteração e exclusão. \
-▪ Revisão e padronização de parametrização em todas as aplicações. \
-▪ Implementação de logs em todas as aplicações. \
-▪ Refação de código e aplicação de design patterns onde necessários. \
-▪ Planejamento de exposição de portas de containers docker. Apenas o cliente MVC é a API devem estar expostos. \
-▪ Testes unitários em todas as aplicações. \
-▪ Criação de documentação.
+▪ xxx. \
+▪ xxx.
 
 ## Execução em ambiente de desenvolvimento
 
 Em um esquipamento com Visual Studio 2022 instalado e Docker Engine versão 24.0.2 or superior em execução: \
 ▪ Clone este repositório. \
-▪ Abra a solução thomasgregcorewebapi.sln. \
-▪ Abra a solução thomasgregmvc.sln. \
+▪ Abra a solução seventhcorewebapi.sln. \
 ▪ Para executar o SQL Server, a partir de uma janela CMD ou PowerShell execute:
 
 ```bash
-docker pull dietermarno/thomasgregmssql:data
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d dietermarno/thomasgregmssql:data
+docker pull dietermarno/seventhmssql:data
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d dietermarno/seventhmssql:data
 ```
 
-▪ Execute a aplicação thomasgregcorewebapi utilizando o perfil "Docker". \
-▪ Execute a aplicação thomasgregmvc utilizando o perfil "Docker". \
-▪ Duas janelas de navegação serão abertas automaticamente, exibindo o mapa de funções da API e o cliente MVC de gerenciamento de registros.
+▪ Execute a aplicação seventhcorewebapi utilizando o perfil "Docker". \
