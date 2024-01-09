@@ -21,15 +21,15 @@ namespace SeventhCoreWebAPI.Models
         {
             modelBuilder.Entity<Server>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnType("text");
+                entity.Property(e => e.Id).HasColumnType("varchar");
 
-                entity.Property(e => e.Name).HasMaxLength(80);
+                entity.Property(e => e.Name).HasMaxLength(200);
             });
 
             modelBuilder.Entity<Video>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnType("text");
-                entity.Property(e => e.ServerId).HasColumnType("text");
+                entity.Property(e => e.Id).HasColumnType("varchar");
+                entity.Property(e => e.ServerId).HasColumnType("varchar");
                 entity.Property(e => e.SizeInBytes).HasColumnType("long");
             });
 

@@ -2,11 +2,11 @@ https://hub.docker.com/_/microsoft-mssql-server
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
 
-docker pull dietermarno/thomasgregmssql:data
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d dietermarno/thomasgregmssql:data
+docker pull dietermarno/seventhgmssql:data
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d dietermarno/seventhmssql:data
 
 Atualizar imagem a partir do container:
-docker commit 18e1cadde3c921a9a8aaaae95af927bfb133002f9ba5c2fec2ad8bd7ed1c9ba9 dietermarno/thomasgregmssql:data
+docker commit 18e1cadde3c921a9a8aaaae95af927bfb133002f9ba5c2fec2ad8bd7ed1c9ba9 dietermarno/seventhmssql:data
 
 Se houver erro "requested access to the resource is denied":
 Antes de subir a imagem da aplicação:
@@ -17,4 +17,4 @@ Depois enviar:
 
 Criar certificado:
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
-docker tag counter-image dietermarno/thomasgregcorewebapi:dev
+docker tag counter-image dietermarno/seventhgcorewebapi:dev

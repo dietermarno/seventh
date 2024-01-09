@@ -27,9 +27,11 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=aspnetapp.pfx
     depends_on:
       - sql
+    volumes:
+      - "C:/temp/seventh:/data"
     networks:
       - dockerhost
 networks:
   dockerhost:
     driver: bridge
-    name: thomasgreg
+    name: seventh

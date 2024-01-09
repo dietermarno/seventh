@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SeventhCoreWebAPI.Models;
 
 namespace SeventhCoreWebAPI.Repositories
@@ -18,6 +17,12 @@ namespace SeventhCoreWebAPI.Repositories
         public async Task<IEnumerable<Video>> GetServerVideos(string serverId)
         {
             return await context.Videos.Where(video => video.ServerId == serverId).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<bool> IsServerAvailable(string serverId)
+        {
+            var serverList = await context.Servers.Where(server => server.Id == serverId).AsNoTracking().ToListAsync();
+            return serverList.Any();
         }
     }
 }

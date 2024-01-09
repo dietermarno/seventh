@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SeventhCoreWebAPI.Models;
@@ -24,9 +25,10 @@ namespace SeventhCoreWebAPI.Controllers
             {
                 return BadRequest("Server information is null");
             }
-            server.Id = new Guid().ToString();
+            Guid guid = Guid.NewGuid();
+            server.Id = guid.ToString();
             await repository.Insert(server);
-            return CreatedAtAction(nameof(GetServer), new { server.Id }, server);
+            return new ObjectResult(server) { StatusCode = StatusCodes.Status201Created };
         }
 
         [HttpDelete("servers/{serverId}")]
@@ -41,7 +43,7 @@ namespace SeventhCoreWebAPI.Controllers
             return Ok(server);
         }
 
-        [HttpGet("servers/{serverId}")]
+        [HttpGet("servers/{serverId}", Name="GetServer")]
         public async Task<ActionResult<Server>> GetServer(string serverId)
         {
             var server = await repository.GetById(serverId);
@@ -53,9 +55,13 @@ namespace SeventhCoreWebAPI.Controllers
         }
 
         [HttpGet("servers/available/{serverId}")]
-        public async Task<IEnumerable<Server>> ServerExists(string serverId)
+        public async Task<IActionResult> ServerExists(string serverId)
         {
-            return await repository.ServerExists(serverId);
+            var server = await repository.ServerExists(serverId);
+            if (server.Count() == 0)
+                return new ObjectResult(server) { StatusCode = StatusCodes.Status404NotFound };
+            else
+                return new ObjectResult(server) { StatusCode = StatusCodes.Status302Found };
         }
 
         [HttpGet("servers")]
@@ -78,7 +84,10 @@ namespace SeventhCoreWebAPI.Controllers
             }
             try
             {
-                await repository.Update(id, server);
+                if (repository.ServerExists(id).Result.Any())
+                    await repository.Update(id, server);
+                else
+                    return new ObjectResult($"Server Id {id} not found") { StatusCode = StatusCodes.Status404NotFound };
             }
             catch (DbUpdateConcurrencyException)
             {

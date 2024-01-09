@@ -13,4 +13,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /App
 COPY --from=build-env /App/out .
 COPY aspnetapp.pfx .
-ENTRYPOINT ["dotnet", "SeventhCoreWebAPI.dll"]
+ENTRYPOINT ["dotnet", "seventhcorewebapi.dll"]
