@@ -40,6 +40,7 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=R353t3282@" -p 1433:1433 -d 
 
 ## TODO
 
+▪ Criação de certificado para habilitar segurança (HTTPS). \
 ▪ Criação de novo container docker para hospedar serviço de mensageria (rabbitmq). \
 ▪ Criação de novo container docker para hospedar serviço do worker de reciclagem de imagens. \
 ▪ Elaboração de serviço asíncrono em C# (worker), para realização da reciclagem das imagens e manutenção dos status dos processos. \
